@@ -34,13 +34,18 @@ const CheckoutPage = ({ cartItems, total }) => (
     {cartItems.map(cartItem => (
       <CheckoutItem key={cartItem.id} cartItem={cartItem} />
     ))}
-    <div className="total">TOTAL: ${total}</div>
+    <div className="sub-total">CART TOTAL: ${total}</div>
+    <div className="sub-total">TOTAL TAX: ${total * 0.8}</div>
+    <div className="sub-total">TOTAL SHIPPING: ${total * 0.3}</div>
+    <div className="total">
+      ORDER TOTAL: ${total + total * 0.8 + total * 0.3}
+    </div>
     <div className="test-warning">
       *Test Card Information*
       <br />
       4242 4242 4242 4242 - EXP: 01/20 - CVV: 123
     </div>
-    <StripeCheckoutButton price={total} />
+    <StripeCheckoutButton price={total + total * 0.8 + total * 0.3} />
   </div>
 );
 
